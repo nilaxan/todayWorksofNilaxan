@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <display-name>Vaadin JEE6 Demo Application</display-name>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <!-- To allow session-scoped beans -->
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>VaadinApp</servlet-name>
+        <servlet-class>com.vaadin.incubator.vaadinspringjee6.servlet.SpringApplicationServlet</servlet-class>
+        <init-param>
+            <param-name>applicationBean</param-name>
+            <!-- Named defined by annotation in VaadinApp class -->
+            <param-value>vaadinApp</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VaadinApp</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>
